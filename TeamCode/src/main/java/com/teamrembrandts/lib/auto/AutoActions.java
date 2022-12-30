@@ -2,6 +2,7 @@ package com.teamrembrandts.lib.auto;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.teamrembrandts.lib.math.geometry.Pose2d;
+import com.teamrembrandts.lib.math.geometry.Rotation2d;
 import com.teamrembrandts.lib.math.geometry.Translation2d;
 import com.teamrembrandts.lib.math.kinematics.ChassisSpeeds;
 import com.teamrembrandts.lib.math.path.DeadWheelOdometry;
@@ -40,4 +41,6 @@ public class AutoActions {
         }
         drivetrain.drive(new ChassisSpeeds(0,0,0));
     }
+
+
 }

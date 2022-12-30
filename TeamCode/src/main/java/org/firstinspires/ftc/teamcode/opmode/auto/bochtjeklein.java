@@ -37,10 +37,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.teamrembrandts.lib.auto.AutoActions;
-import com.teamrembrandts.lib.math.geometry.Pose2d;
-import com.teamrembrandts.lib.math.geometry.Rotation2d;
 import com.teamrembrandts.lib.math.geometry.Translation2d;
-import com.teamrembrandts.lib.math.path.DeadWheelOdometry;
 
 
 /**
@@ -56,21 +53,15 @@ import com.teamrembrandts.lib.math.path.DeadWheelOdometry;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Weekend", group="Linear Opmode")
-public class BochtjeGroot extends LinearOpMode {
+@Autonomous(name="Weekend3", group="Linear Opmode")
+public class bochtjeklein extends LinearOpMode {
     AutoActions autoActions;
-    DeadWheelOdometry odometry;
-
-    Pose2d currentPose;
 
     @Override
     public void runOpMode() {
         autoActions = new AutoActions(hardwareMap);
-        odometry = new DeadWheelOdometry(hardwareMap);
-        currentPose = new Pose2d(new Translation2d(0,0), new Rotation2d(0));
         waitForStart();
 
-        autoActions.driveToPoint(new Translation2d(0,-40), 5, 0.35);
-        autoActions.driveToPoint(new Translation2d(40, 0), 5, 0.35);
+        autoActions.driveToPoint(new Translation2d(40,0), 10, 0.35);
     }
 }

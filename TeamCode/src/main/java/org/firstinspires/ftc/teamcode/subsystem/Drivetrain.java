@@ -19,12 +19,16 @@ public class Drivetrain {
         motorBackRight = hardwareMap.get(DcMotor.class, "back-right");
 
         motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void drive(ChassisSpeeds targetSpeeds) {
-        motorFrontLeft.setPower(-targetSpeeds.getVX() + targetSpeeds.getVY() - targetSpeeds.getVR());
-        motorFrontRight.setPower(targetSpeeds.getVX() + targetSpeeds.getVY() + targetSpeeds.getVR());
-        motorBackLeft.setPower(targetSpeeds.getVX() + targetSpeeds.getVY() - targetSpeeds.getVR());
-        motorBackRight.setPower(-targetSpeeds.getVX() + targetSpeeds.getVY() + targetSpeeds.getVR());
+        //dit fiksen dan werkt het als het goed is
+        //even met de + en - kutten todat het werkt
+        // x is positief
+        motorFrontLeft.setPower(-targetSpeeds.getVX() - targetSpeeds.getVY() - targetSpeeds.getVR());
+        motorFrontRight.setPower(-targetSpeeds.getVX() + targetSpeeds.getVY() + targetSpeeds.getVR());
+        motorBackLeft.setPower(-targetSpeeds.getVX() + targetSpeeds.getVY() - targetSpeeds.getVR());
+        motorBackRight.setPower(-targetSpeeds.getVX() - targetSpeeds.getVY() + targetSpeeds.getVR());
     }
 }
