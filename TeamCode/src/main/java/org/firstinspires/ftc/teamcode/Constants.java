@@ -9,4 +9,5 @@ public class Constants {
     public static final double TICKS_TO_CENTIMETERS = 1 / TICKS_PER_REV * CENTIMETERS_PER_REV;
     public static final double TRACK_WIDTH = 20.9;
     public static final double FORWARD_OFFSET = -3.6;
+    public static final double TURNING_KP = 1 / Math.PI;
 }

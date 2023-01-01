@@ -7,6 +7,10 @@ public class Rotation2d {
         this.rad = radians;
     }
 
+    public static Rotation2d fromDegrees(double degrees) {
+        return new Rotation2d(Math.toRadians(degrees));
+    }
+
     public double getRadians() {
         return rad;
     }
@@ -22,6 +26,6 @@ public class Rotation2d {
 
     public double getAngle(Rotation2d otherVector){
         Rotation2d deltaAngle = this.minus(otherVector);
-        return getAngle(deltaAngle);
+        return deltaAngle.getRadians();
     }
 }

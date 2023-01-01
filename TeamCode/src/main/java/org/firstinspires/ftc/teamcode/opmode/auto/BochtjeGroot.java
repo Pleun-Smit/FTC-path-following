@@ -70,8 +70,8 @@ public class BochtjeGroot extends LinearOpMode {
         currentPose = new Pose2d(new Translation2d(0,0), new Rotation2d(0));
         waitForStart();
 
-        autoActions.driveToPoint(new Translation2d(0,-40), 5, 0.35);
-        autoActions.driveToPoint(new Translation2d(40, 0), 5, 0.35);
-        autoActions.turnToPoint(new Rotation2d(0.5*Math.PI), 5, 0.35);
+        autoActions.driveToPoint(new Translation2d(-130,0), 15, 0.35);
+        autoActions.turnToPoint(Rotation2d.fromDegrees(-90), Rotation2d.fromDegrees(5), 1, 0.1);
+        autoActions.driveToPoint(new Translation2d(-130, -80), 5, 0.35);
     }
 }

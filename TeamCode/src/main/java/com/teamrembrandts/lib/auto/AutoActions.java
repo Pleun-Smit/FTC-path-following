@@ -6,6 +6,7 @@ import com.teamrembrandts.lib.math.geometry.Rotation2d;
 import com.teamrembrandts.lib.math.geometry.Translation2d;
 import com.teamrembrandts.lib.math.kinematics.ChassisSpeeds;
 import com.teamrembrandts.lib.math.path.DeadWheelOdometry;
+import static org.firstinspires.ftc.teamcode.Constants.*;
 
 import org.firstinspires.ftc.teamcode.subsystem.Drivetrain;
 
@@ -42,19 +43,12 @@ public class AutoActions {
         drivetrain.drive(new ChassisSpeeds(0,0,0));
     }
 
-    public void turnToPoint(Rotation2d target, double endDistance, double maxSpeed) {
+
+    public void turnToPoint(Rotation2d target, Rotation2d maxOffset, double maxSpeed, double minSpeed) {
         try {
-            while (odometry.updatePose().getRotation().getAngle(target) > endDistance) {
-                Rotation2d movementVector = target.minus(odometry.getCurrentPose().getRotation());
-
-               // System.out.println("dx: " + movementVector.getX());
-                System.out.println("dr: " + movementVector.getRadians());
-
-                double movementVectorLength = target.getAngle(odometry.getCurrentPose().getRotation());
-
-               // double vx = movementVector.getX() / movementVectorLength * maxSpeed;
-                //double vy = movementVector.getY() / movementVectorLength * maxSpeed;
-                double vr = movementVector.getRadians() / movementVectorLength * maxSpeed;
+            while (Math.abs(odometry.updatePose().getRotation().getAngle(target)) > maxOffset.getRadians()) {
+                double movementVector = target.getAngle(odometry.getCurrentPose().getRotation());
+                double vr = movementVector * TURNING_KP * maxSpeed * (1 - minSpeed) + minSpeed;
 
                 //System.out.println("vx: " + vx);
                 System.out.println("vr: " + vr);
@@ -66,8 +60,4 @@ public class AutoActions {
         }
         drivetrain.drive(new ChassisSpeeds(0,0,0));
     }
-
-
-
-
 }
