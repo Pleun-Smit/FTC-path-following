@@ -72,5 +72,6 @@ public class BochtjeGroot extends LinearOpMode {
 
         autoActions.driveToPoint(new Translation2d(0,-40), 5, 0.35);
         autoActions.driveToPoint(new Translation2d(40, 0), 5, 0.35);
+        autoActions.turnToPoint(new Rotation2d(0.5*Math.PI), 5, 0.35);
     }
 }

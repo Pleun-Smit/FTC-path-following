@@ -26,6 +26,7 @@ public class DeadWheelOdometry {
         rightEncoder = hardwareMap.get(DcMotorEx.class, "right-encoder");
         perpendicularEncoder = hardwareMap.get(DcMotorEx.class, "perp-encoder");
 
+        //rightEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
         leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
         perpendicularEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 

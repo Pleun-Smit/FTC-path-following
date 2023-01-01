@@ -42,5 +42,32 @@ public class AutoActions {
         drivetrain.drive(new ChassisSpeeds(0,0,0));
     }
 
+    public void turnToPoint(Rotation2d target, double endDistance, double maxSpeed) {
+        try {
+            while (odometry.updatePose().getRotation().getAngle(target) > endDistance) {
+                Rotation2d movementVector = target.minus(odometry.getCurrentPose().getRotation());
+
+               // System.out.println("dx: " + movementVector.getX());
+                System.out.println("dr: " + movementVector.getRadians());
+
+                double movementVectorLength = target.getAngle(odometry.getCurrentPose().getRotation());
+
+               // double vx = movementVector.getX() / movementVectorLength * maxSpeed;
+                //double vy = movementVector.getY() / movementVectorLength * maxSpeed;
+                double vr = movementVector.getRadians() / movementVectorLength * maxSpeed;
+
+                //System.out.println("vx: " + vx);
+                System.out.println("vr: " + vr);
+
+                drivetrain.drive(new ChassisSpeeds(0, 0, vr));
+            }
+        } catch (Exception e) {
+
+        }
+        drivetrain.drive(new ChassisSpeeds(0,0,0));
+    }
+
+
+
 
 }

@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.teamrembrandts.lib.math.geometry.Pose2d;
 import com.teamrembrandts.lib.math.geometry.Rotation2d;
 import com.teamrembrandts.lib.math.geometry.Translation2d;
@@ -80,10 +81,15 @@ public class TeleOp extends OpMode
         odometry = new DeadWheelOdometry(hardwareMap);
         currentPose = new Pose2d(new Translation2d(0,0), new Rotation2d(0));
 
+
         // TODO nog meer zut om weg te halen
-        leftEncoder = hardwareMap.get(DcMotor.class, "left-encoder");
-        rightEncoder = hardwareMap.get(DcMotor.class, "right-encoder");
-        perpendicularEncoder = hardwareMap.get(DcMotor.class, "perp-encoder");
+       leftEncoder = hardwareMap.get(DcMotorEx.class, "left-encoder");
+       rightEncoder = hardwareMap.get(DcMotorEx.class, "right-encoder");
+       perpendicularEncoder = hardwareMap.get(DcMotorEx.class, "perp-encoder");
+
+        //rightEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
+        perpendicularEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
@@ -108,6 +114,7 @@ public class TeleOp extends OpMode
      */
     @Override
     public void loop() {
+
         currentPose = odometry.updatePose();
 
         drivetrain.drive(
