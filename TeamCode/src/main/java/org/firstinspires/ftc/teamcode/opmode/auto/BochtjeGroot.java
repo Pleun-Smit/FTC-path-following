@@ -56,6 +56,8 @@ import com.teamrembrandts.lib.math.path.DeadWheelOdometry;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
+//alleen deze code editen voor autonoom!!!!!!!!
+
 @Autonomous(name="Weekend", group="Linear Opmode")
 public class BochtjeGroot extends LinearOpMode {
     AutoActions autoActions;
@@ -72,6 +74,8 @@ public class BochtjeGroot extends LinearOpMode {
 
         autoActions.driveToPoint(new Translation2d(-130,0), 15, 0.35);
         autoActions.turnToPoint(Rotation2d.fromDegrees(-90), Rotation2d.fromDegrees(5), 1, 0.1);
-        autoActions.driveToPoint(new Translation2d(-130, -80), 5, 0.35);
+        sleep(1000);
+        autoActions.driveToPoint(new Translation2d(-200, 0), 15, 0.35);
+
     }
 }

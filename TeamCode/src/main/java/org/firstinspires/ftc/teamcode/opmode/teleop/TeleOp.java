@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode.opmode.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -41,8 +40,6 @@ import com.teamrembrandts.lib.math.kinematics.ChassisSpeeds;
 import com.teamrembrandts.lib.math.path.DeadWheelOdometry;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.Constants.*;
-
 import org.firstinspires.ftc.teamcode.subsystem.Drivetrain;
 
 /**
@@ -119,10 +116,11 @@ public class TeleOp extends OpMode
 
         drivetrain.drive(
                 new ChassisSpeeds(
-                    gamepad1.left_stick_x,
                     gamepad1.left_stick_y,
+                    -gamepad1.left_stick_x,
                     gamepad1.right_stick_x
-                )
+                ),
+                odometry.getCurrentPose().getRotation()
         );
 
         telemetry.addData("encoder left", leftEncoder.getCurrentPosition() * Constants.TICKS_TO_CENTIMETERS);
@@ -131,6 +129,8 @@ public class TeleOp extends OpMode
         telemetry.addData("x", currentPose.getTranslation().getX());
         telemetry.addData("y", currentPose.getTranslation().getY());
         telemetry.addData("r", currentPose.getRotation().getDegrees());
+        telemetry.addData("leftstickx", gamepad1.left_stick_x);
+        telemetry.addData("leftsticky", gamepad1.left_stick_y);
     }
 
     /*
